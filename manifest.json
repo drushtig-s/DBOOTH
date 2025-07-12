@@ -1,0 +1,13 @@
+{
+  "name": "DBOOTH",
+  "short_name": "DBOOTH",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#ff4081",
+  "icons": [{
+    "src": "icon.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  }]
+}

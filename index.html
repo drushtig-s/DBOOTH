@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DBOOTH</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body { text-align: center; background: #111; color: white; font-family: Arial; }
+    video, canvas { max-width: 100%; border-radius: 10px; }
+    button { padding: 10px 20px; background: #ff4081; color: white; border: none; border-radius: 5px; font-size: 16px; }
+    #photos img { width: 120px; margin: 5px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <h1>📸 DBOOTH</h1>
+  <video id="video" autoplay playsinline></video><br>
+  <button onclick="takePhoto()">📷 Capture</button>
+  <div id="photos"></div>
+  <script>
+    const video = document.getElementById('video');
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => video.srcObject = stream)
+      .catch(err => alert('Camera error: ' + err));
+    function takePhoto() {
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0);
+      const img = document.createElement('img');
+      img.src = canvas.toDataURL('image/png');
+      document.getElementById('photos').prepend(img);
+    }
+  </script>
+</body>
+</html>
